@@ -5,7 +5,7 @@ import os
 import errno
 
 
-def sms():
+def QueryItem():
 
     msg = "Item not found"   #default message when nothing is found
     item = body[10:]         #the item after 'read key: '
