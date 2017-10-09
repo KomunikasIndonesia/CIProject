@@ -1,0 +1,6 @@
+orange: 7
+applewww: 5
+apple: 8
+cherry: 1
+eggplant: 6
+cabbage: 6

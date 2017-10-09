@@ -4,9 +4,15 @@ from twilio import twiml
 import os
 import errno
 
+# this file makes queries to the inventory
+# the messaging format is:
+# read key: (item)
+# example:
+# ready key: orange
+# expected output: orange: 7
 
-def QueryItem():
-
+def QueryItem(body):
+    
     msg = "Item not found"   #default message when nothing is found
     item = body[10:]         #the item after 'read key: '
     item2 = item + ":"       #item with ":" added to it
@@ -19,9 +25,9 @@ def QueryItem():
             othermsg = line[:itemsize]
     read.close()
 
-    resp.message(msg)
+    #resp.message(msg)
 
-    return str(resp)
+    return str(msg)
 
 if __name__ == "__main__":
     app.run(debug=True)

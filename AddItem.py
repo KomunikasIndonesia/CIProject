@@ -4,8 +4,16 @@ from twilio import twiml
 import os
 import errno
 
+# this file adds items to the inventory
+# messaging format is: store key: (item): (#)
+# example:
+# store key: cabbage: 8
+# expected output: cabbage: 8 is stored
 
-def AddItem():
+# Currently this only stores the item name and number specified.
+# It cannot add to items yet.
+
+def AddItem(body):
 
     write = open("inventory.txt", "r")
     lines = write.readlines()
@@ -26,9 +34,9 @@ def AddItem():
             coloncount = coloncount + 1
 
     if coloncheck == False and coloncount != 1:
-        resp.message("Item not stored: format incorrect")
+        msg = "Item not stored: format incorrect"
     elif (quantity.isdigit() == False):
-        resp.message("Item not stored: non-number entered")
+        msg = "Item not stored: non-number entered"
     else:
         write = open("inventory.txt", "w")
         for line in lines:
@@ -39,9 +47,10 @@ def AddItem():
         with open("inventory.txt", "a") as f:
             f.write(item + "\n")
         f.close()
-        resp.message(actualitem + ": " + quantity + " is stored")
+        msg = actualitem + ": " + quantity + " is stored"
+        
 
-    return str(resp)
+    return str(msg)
 
 if __name__ == "__main__":
     app.run(debug=True)
