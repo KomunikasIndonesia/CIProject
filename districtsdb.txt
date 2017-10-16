@@ -1,0 +1,2 @@
+west sulawesi : 1
+west papua : 2
